@@ -24,7 +24,7 @@ The `kill` module allows you to terminate a process by either its PID or its nam
   kill:
     process: "1234"
     signal: "9"
-
+```
 ## Author
 
 - **John Freidman** - [@Xploit9999](https://github.com/Xploit9999)
