@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+
+  - get_pids:
+      by_user: YAGAMI
+      ignore_case: true
+    register: result
+
+  - debug:
+      var: result
+...
