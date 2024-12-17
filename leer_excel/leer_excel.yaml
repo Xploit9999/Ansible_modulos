@@ -1,0 +1,79 @@
+---
+module: leer_excel
+short_description: Lee datos de un archivo Excel desde una celda inicial, soportando delimitadores.
+description:
+  - Este módulo permite leer datos de un archivo Excel (.xlsx), comenzando desde una celda especificada y tomando un número determinado de columnas.
+  - La lectura de datos se detendrá al encontrar un delimitador, que será definido por el usuario.
+  - Los datos leídos se retornan como una lista de listas, donde cada lista interna corresponde a una fila del Excel.
+
+options:
+  ruta:
+    description:
+      - Ruta del archivo Excel a leer.
+    required: true
+    type: str
+  hoja:
+    description:
+      - Nombre de la hoja dentro del archivo Excel de la cual leer los datos.
+    required: true
+    type: str
+  celda_inicial:
+    description:
+      - La celda inicial desde la cual comenzar a leer los datos (por ejemplo, "B53").
+    required: true
+    type: str
+  num_columnas:
+    description:
+      - Número de columnas a leer, a partir de la celda inicial.
+    required: true
+    type: int
+  delimitador:
+    description:
+      - Delimitador que indica el final de la lectura. Cuando se encuentra este valor, la lectura se detiene.
+    required: true
+    type: str
+
+return:
+  datos:
+    description: Lista de listas con los datos leídos desde el archivo Excel. Cada sublista corresponde a una fila de datos.
+    type: list
+    returned: always
+
+example:
+  - name: Leer datos desde un archivo Excel
+    leer_excel:
+      ruta: "/path/to/file.xlsx"
+      hoja: "testing"
+      celda_inicial: "B53"
+      num_columnas: 15
+      delimitador: "*/"
+    register: datos
+
+  - name: Mostrar los datos leídos
+    debug:
+      var: datos
+
+  - name: Leer una celda en especifico
+    leer_excel:
+      ruta: "/path/to/file.xlsx"
+      hoja: "testing"
+      celda_inicial: "A2"
+      num_columnas: 1
+      delimitador: "*/"
+    register: datos
+
+  - name: Mostrar dato de la celda en especifico a consultar.
+    debug:
+      var: "{{ datos[0][0] }}"
+
+  - name: Leer archivo Excel hasta celda final
+    leer_excel:
+      ruta: "/path/to/test.xlsx"
+      hoja: "Formulario"
+      celda_inicial: "B53"
+      celda_final: "B54"
+      num_columnas: 15
+    register: excel_data
+
+author:
+  - John Freidman (@Xploit9999)
