@@ -33,7 +33,7 @@ def leer_excel(ruta, hoja_nombre, celda_inicial, num_columnas, delimitador=None,
 
     return datos
 
-def run_module():
+def iniciar_proceso():
     module_args = dict(
         ruta=dict(type='str', required=True),
         hoja=dict(type='str', required=True),
@@ -43,7 +43,7 @@ def run_module():
         celda_final=dict(type='str', required=False, default=None)
     )
 
-    result = dict(
+    resultado = dict(
         changed=False,
         datos=None
     )
@@ -51,7 +51,7 @@ def run_module():
     try:
         module = AnsibleModule(argument_spec=module_args, supports_check_mode=False)
 
-        result['datos'] = leer_excel(
+        resultado['datos'] = leer_excel(
             module.params['ruta'],
             module.params['hoja'],
             module.params['celda_inicial'],
@@ -60,11 +60,11 @@ def run_module():
             module.params.get('celda_final')
         )
 
-        module.exit_json(**result)
+        module.exit_json(**resultado)
 
     except Exception as e:
         module.fail_json(msg=str(e))
 
 if __name__ == '__main__':
-    run_module()
+    iniciar_proceso()
 
