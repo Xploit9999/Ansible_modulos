@@ -15,9 +15,11 @@ def leer_excel(ruta, hoja_nombre, celda_inicial, num_columnas, delimitador=None,
         columna_final = ord(celda_final[0].upper()) - ord('A') + 1
         fila_final = int(celda_final[1:])
         max_col = columna_final  
-    else:
+    elif num_columnas is not None:
         max_col = columna_inicial + num_columnas - 1
         fila_final = fila_inicial + 1000  
+    else:
+        raise ValueError("Debe especificarse 'num_columnas' cuando no se usa 'celda_final'.")
 
     wb = openpyxl.load_workbook(ruta, data_only=True)
     hoja = wb[hoja_nombre]
@@ -38,7 +40,7 @@ def iniciar_proceso():
         ruta=dict(type='str', required=True),
         hoja=dict(type='str', required=True),
         celda_inicial=dict(type='str', required=True),
-        num_columnas=dict(type='int', required=True),
+        num_columnas=dict(type='int', required=False, default=None),
         delimitador=dict(type='str', required=False, default=None),
         celda_final=dict(type='str', required=False, default=None)
     )
