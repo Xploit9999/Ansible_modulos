@@ -28,9 +28,9 @@ El módulo requiere los siguientes parámetros:
 
 
 ### `num_columnas`
-- **Descripción**: Número de columnas a leer, a partir de la celda inicial.
+- **Descripción**: Número de columnas a leer, a partir de la celda inicial. (No aplica si celda_final tiene parametro definido).
 - **Tipo**: `int`
-- **Requerido**: Sí
+- **Requerido**: No
 
 ### `delimitador`
 - **Descripción**: Delimitador que indica el final de la lectura. Cuando se encuentra este valor, la lectura se detiene.
@@ -67,13 +67,12 @@ El módulo requiere los siguientes parámetros:
     debug:
       var: "{{ datos[0][0] }}"
 
-  - name: Leer archivo Excel hasta celda final
+  - name: Leer archivo Excel con rango de celda final
     leer_excel:
       ruta: "/path/to/test.xlsx"
       hoja: "Formulario"
       celda_inicial: "B53"
-      celda_final: "B54"
-      num_columnas: 15
+      celda_final: "I18"
     register: datos
 ```
 ## Nota
