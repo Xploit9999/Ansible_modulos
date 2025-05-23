@@ -6,16 +6,45 @@ Este módulo genera dos tipos de gráficos a partir de los resultados de tareas 
 
 - Ansible
 - Python 3.x
-- Dependencias:
+- chromium o chrome
+- Dependencias Python:
   - Plotly  
   - Kaleido
   - Numpy
   - Pandas
+- Dependencias S.O:
+  - libX11 
+  - libXcomposite 
+  - libXcursor 
+  - libXdamage 
+  - libXext 
+  - libXi 
+  - libXtst 
+  - libxkbcommon 
+  - libXrandr 
+  - libXcomposite 
+  - libxshmfence 
+  - libXScrnSaver 
+  - libX11-xcb
+  - mesa-libgbm
+  - nss 
+  - alsa-lib
+  - cups-libs
+  - pango
+  - atk
+  - at-spi2-atk
 
 ```bash
 $ pip install <librería>
 ```
 
+```bash
+# Instalación de chromium manual por sí lo requieren.
+
+$ curl -L -o chrome-linux.zip https://download-chromium.appspot.com/dl/Linux_x64?type=snapshots
+$ unzip chrome-linux.zip -d /opt
+$ ln -s /opt/chrome-linux/chrome /usr/local/bin/chrome
+```
 ## Parámetros
 
 | Parámetro              | Tipo   | Requerido | Descripción |
