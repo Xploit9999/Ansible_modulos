@@ -73,10 +73,32 @@ Módulo para **conversión de documentos html a pdf**.
   - OpenSSL disponible en el sistema (`openssl` CLI)
   - Claves privadas en formato PEM
 - Para el modulo de graficos: `pip install <dependencias>`
-  - Plotly
-  - Kaleido
-  - Numpy
-  - Pandas
+  - dependencias Python:
+    - Plotly
+    - Kaleido
+    - Numpy
+    - Pandas
+  - dependencias S.O:
+    - libX11 
+    - libXcomposite 
+    - libXcursor 
+    - libXdamage 
+    - libXext 
+    - libXi 
+    - libXtst 
+    - libxkbcommon 
+    - libXrandr 
+    - libXcomposite 
+    - libxshmfence 
+    - libXScrnSaver 
+    - libX11-xcb
+    - mesa-libgbm
+    - nss 
+    - alsa-lib
+    - cups-libs
+    - pango
+    - atk
+    - at-spi2-atk
 - Para el modulo de conversión html a pdf: `pip install <dependencias>`
   - Python 3.7+
   - pyppeteer 
