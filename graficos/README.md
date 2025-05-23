@@ -53,6 +53,16 @@ $ pip install <librería>
         adolescentes: 3 
 ```
 
+## Ejemplo de graficos generados:
+
+#### Grafico torta
+
+![Gráfico torta](imagenes/grafico_torta.png)
+
+#### Gráfico de barras
+
+![Gráfico de barras](imagenes/grafico_barras.png)
+
 ## Retorno
 
 El módulo devuelve un diccionario con las rutas de los archivos generados y, si se solicita, sus representaciones en Base64:
