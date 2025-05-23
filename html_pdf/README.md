@@ -11,7 +11,7 @@ Este módulo permite convertir archivos HTML en archivos PDF utilizando la bibli
 ## Parámetros 
 
 | Parámetro    | Tipo | Requerido | Descripción                                  | Valor por defecto |
-|--------------------|-----------------------------------------------------------|-------------------|
+|--------------|-----|------|----------------------------------------------------|-------------------|
 | `origen`     | str | Sí | Ruta al archivo HTML de entrada                      | -                 |
 | `destino`     | str | Sí | Ruta de salida para el PDF generado                 | -                 |
 | `formato_hoja`| str | No | Formato del papel del PDF (Ej: `A4`, `Letter`)      | `A4`              |
