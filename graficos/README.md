@@ -1,6 +1,6 @@
 # Módulo Ansible: `graficos`
 
-Este módulo genera dos tipos de gráficos a partir de los resultados de tareas automatizadas; un gráfico de torta para éxitos y fallos, y un gráfico de barras para fallas recurrentes. Utiliza la biblioteca `plotly` para crear visualizaciones exportables en formato PNG. (Plotly)
+Este módulo genera dos tipos de gráficos a partir de los resultados de tareas automatizadas; un gráfico de torta para éxitos y fallos, y un gráfico de barras para representar metricas agrupadas. Utiliza la biblioteca `plotly` para crear visualizaciones exportables en formato PNG. (Plotly)
 
 ## Requisitos
 
