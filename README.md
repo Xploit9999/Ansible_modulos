@@ -46,6 +46,23 @@ Módulo para **firmar contenido con OpenSSL**.
 
 ---
 
+### ✏️ `graficos`
+Módulo para la **generación de graficos (torta y barras)**.
+
+- Genera graficos en torta y barra en formato png.
+- Los graficos pueden ser insertados en tu codigo html en formato base64.
+- Puedes insertar directamente las imagenes en tu PDF.
+
+---
+
+### ✏️ `html_pdf`
+Módulo para **conversión de documentos html a pdf**.
+
+- Convierte documentos html a PDF.
+- Flexibilidad en la exportación para diferentes formatos de hoja u orientación.
+
+---
+
 ## 🔧 Requisitos
 
 - Python 3.x
@@ -55,6 +72,14 @@ Módulo para **firmar contenido con OpenSSL**.
 - Para `openssl_sig`:
   - OpenSSL disponible en el sistema (`openssl` CLI)
   - Claves privadas en formato PEM
+- Para el modulo de graficos: `pip install <dependencias>`
+  - Plotly
+  - Kaleido
+  - Numpy
+  - Pandas
+- Para el modulo de conversión html a pdf: `pip install <dependencias>`
+  - Python 3.7+
+  - pyppeteer 
 
 ---
 
