@@ -7,7 +7,7 @@ from pyppeteer import launch
 
 async def convertir_html_a_pdf(ruta_html, ruta_pdf, formato_hoja, orientacion):
 
-    navegador = await launch()
+    navegador = await launch(headless=True, args=['--no-sandbox', '--disable-setuid-sandbox'])
     pagina = await navegador.newPage()
     await pagina.setViewport({'width': 1200, 'height': 800})
 
