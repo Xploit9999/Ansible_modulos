@@ -6,12 +6,10 @@ import base64
 import os
 
 def codificar_base64(ruta):
-
     with open(ruta, 'rb') as imagen:
         return base64.b64encode(imagen.read()).decode('utf-8')
 
 def procesar_datos(datos):
-
     etiquetas = []
     cantidades = []
     colores = []
@@ -75,25 +73,36 @@ def main():
         ruta_pie = os.path.join(carpeta_salida, "grafico_torta.png")
         figura_pie.write_image(ruta_pie, width=400, height=400)
 
+        leyenda_barras = []
+
         if recurrencias:
             etiquetas_barras, cantidades_barras, colores_barras = procesar_datos(recurrencias)
+
+            datos_barras = list(zip(etiquetas_barras, cantidades_barras, colores_barras))
+            datos_barras.sort(key=lambda x: x[1], reverse=True)
+            etiquetas_barras, cantidades_barras, colores_barras = zip(*datos_barras)
+
             figura_barras = px.bar(
-                x=etiquetas_barras,
-                y=cantidades_barras,
+                x=cantidades_barras,
+                y=etiquetas_barras,
                 title=titulo_barras,
-                labels={'x': 'Tarea', 'y': 'Cantidad'}
+                labels={'x': 'Cantidad', 'y': 'Tarea'},
+                orientation='h'
             )
+            figura_barras.update_layout(yaxis=dict(autorange="reversed"))
 
-            if any(colores_barras):
-                figura_barras.update_traces(marker_color=[
-                    color if color else '#C9190B' for color in colores_barras
-                ])
-            else:
-                figura_barras.update_traces(marker_color='#C9190B')
+            figura_barras.update_traces(marker_color=[
+                color if color else '#C9190B' for color in colores_barras
+            ])
 
-            figura_barras.update_layout(xaxis_tickangle=-25, margin=dict(l=20, r=20, t=40, b=80))
+            alto = max(400, len(etiquetas_barras) * 40)
             ruta_barras = os.path.join(carpeta_salida, "grafico_barras.png")
-            figura_barras.write_image(ruta_barras, width=600, height=400)
+            figura_barras.write_image(ruta_barras, width=600, height=alto)
+
+            leyenda_barras = [
+                {"tarea": etiqueta, "cantidad": cantidad}
+                for etiqueta, cantidad in zip(etiquetas_barras, cantidades_barras)
+            ]
         else:
             ruta_barras = None
 
@@ -101,6 +110,7 @@ def main():
             'changed': True,
             'grafico_torta': ruta_pie,
             'grafico_barras': ruta_barras,
+            'leyenda_barras': leyenda_barras,
             'msg': "Gráficos generados correctamente"
         }
 
