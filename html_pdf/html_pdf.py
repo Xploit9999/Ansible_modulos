@@ -6,23 +6,32 @@ import os
 from pyppeteer import launch
 
 async def convertir_html_a_pdf(ruta_html, ruta_pdf, formato_hoja, orientacion):
-    navegador = await launch(headless=True, args=['--no-sandbox', '--disable-setuid-sandbox'])
+
+    navegador = await launch()
     pagina = await navegador.newPage()
+    await pagina.setViewport({'width': 1200, 'height': 800})
 
     url_archivo = 'file://' + os.path.abspath(ruta_html)
     await pagina.goto(url_archivo, waitUntil='load', timeout=0)
-    await asyncio.sleep(1)  
+    await asyncio.sleep(1) 
 
     await pagina.pdf({
         'path': ruta_pdf,
         'format': formato_hoja,
         'landscape': orientacion == 'horizontal',
-        'printBackground': True
+        'printBackground': True,
+        'margin': {
+            'top': '20px',
+            'right': '20px',
+            'bottom': '20px',
+            'left': '20px'
+        }
     })
 
     await navegador.close()
 
 def main():
+
     modulo = AnsibleModule(
         argument_spec=dict(
             origen=dict(type='path', required=True),
@@ -48,4 +57,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
