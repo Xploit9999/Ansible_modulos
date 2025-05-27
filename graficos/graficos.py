@@ -93,7 +93,7 @@ def main():
 
             figura_barras.update_traces(marker_color=[
                 color if color else '#C9190B' for color in colores_barras
-            ])
+            ], text=cantidades_barras, textposition='outside')
 
             alto = max(400, len(etiquetas_barras) * 40)
             ruta_barras = os.path.join(carpeta_salida, "grafico_barras.png")
