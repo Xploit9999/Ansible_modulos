@@ -49,34 +49,45 @@ $ ln -s /opt/chrome-linux/chrome /usr/local/bin/chrome
 
 | Parámetro              | Tipo   | Requerido | Descripción |
 |---------------------|--------|-----------|-------------|
-| `exitos`            | int    | Sí        | Número total de tareas exitosas. |
-| `fallos`            | int    | Sí        | Número total de tareas fallidas. |
-| `recurrencias`      | dict   | No        | Diccionario con (clave = nombre de tarea, valor = cantidad). |
+| `distribucion`            | dict    | Sí        | Diccionario que representa la distribución para el gráfico de torta. Cada clave representa una categoría, y su valor puede ser un número o un diccionario con cantidad y opcionalmente color. |
+| `titulo_torta`            | str    | No        | Título para el gráfico de torta. Valor por defecto: "Gráfico de Distribución". |
+| `recurrencias`      | dict   | No        | 	Diccionario con datos para el gráfico de barras (clave = nombre, valor = cantidad o diccionario con cantidad y color). |
+| `titulo_barras`      | str   | No        | Título para el gráfico de barras. Valor por defecto: "Gráfico de Medición". |
 | `carpeta_salida`    | str    | No        | Carpeta donde se guardarán los gráficos generados. Por defecto es el directorio actual (`.`). |
 | `incluir_base64`    | bool   | No        | Si se establece en `true`, se incluirán las versiones codificadas en Base64 de los gráficos en la salida del módulo. |
 
 ## Uso 
 
 ```yaml
-- name: Generar gráficos con valores hardcodeados
+- name: Generar gráficos personalizados (colores y titulos personalizados) con base64
   graficos:
-    exitos: 80
-    fallos: 20
+    distribucion:
+      exitos:
+        cantidad: 80
+        color: '#28a745'
+      fallos:
+        cantidad: 20
+        color: '#dc3545'
     recurrencias:
-      adultos: 5
-      adolescentes: 3
+      adultos:
+        cantidad: 5
+        color: '#007bff'
+      adolescentes:
+        cantidad: 3
+    titulo_torta: "Resumen de Tareas"
+    titulo_barras: "Distribución por Grupo"
     carpeta_salida: "/tmp"
     incluir_base64: true
 
-- name: Generar gráficos con variables y sin base64
+- name: Generar gráficos sin tanta personalización y sin base64
   graficos:
-    exitos: "{{ tasa_exito }}"
-    fallos: "{{ tasa_fallo }}"
+    distribucion: "{{ metricas }}"
     recurrencias: "{{ asistentes }}"
     carpeta_salida: "/tmp"
   vars:
-    tasa_exito: 80
-    tasa_fallo: 20
+    metricas:
+        tasa_exito: 80
+        tasa_fallo: 20
     asistentes:
         adultos: 5
         adolescentes: 3 
